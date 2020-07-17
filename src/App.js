@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import {getData} from './utils/utils';
+import Loader from "./Loader/Loader";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            console.log("Loaded",isLoading)
+            const result = await getData();
+
+            setData(result);
+            console.log(data);
+            console.log(result);
+            setIsLoading(false);
+            console.log("Loaded",isLoading)
+        };
+
+        fetchData();
+    }, []);
+
+    return (
+      <div className="container">
+          <Loader />
+      </div>
+    );
 }
 
 export default App;
