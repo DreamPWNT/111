@@ -5,7 +5,7 @@ const SOURCE_ADDRESS = 'http://www.filltext.com/?rows=32&id={number|1000}&firstN
 const getData = async () => {
     try {
         const response = await axios.get(SOURCE_ADDRESS);
-        return response.data;
+        return response;
     } catch (error) {
         console.error(error);
     }

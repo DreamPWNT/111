@@ -12,9 +12,9 @@ const App = () => {
             console.log("Loaded",isLoading)
             const result = await getData();
 
-            setData(result);
+            setData(result.data);
             console.log(data);
-            console.log(result);
+            console.log(result.data);
             setIsLoading(false);
             console.log("Loaded",isLoading)
         };
@@ -24,7 +24,12 @@ const App = () => {
 
     return (
       <div className="container">
-          <Loader />
+          {
+              isLoading ?
+              <Loader />
+              :
+              <p>Данные загружены!!!</p>
+          }
       </div>
     );
 }
